@@ -1,0 +1,70 @@
+[project]
+name = "oberon0-compiler"
+version = "0.1.0"
+description = "A Oberon-0 compiler"
+keywords = ["oberon", "runtime", "compiler", "interpreter"]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "loguru>=0.7.3",
+    "rich>=15.0.0",
+    "typer>=0.24.2",
+    "wasmtime>=44.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "bump-my-version>=1.3.0",
+    "furo>=2025.12.19",
+    "pre-commit>=4.6.0",
+    "pyright>=1.1.409",
+    "pytest>=9.0.3",
+    "ruff>=0.15.11",
+    "sphinx>=9.1.0",
+    "sphinx-design>=0.7.0",
+    "sphinxcontrib-napoleon>=0.7",
+    "sphinxcontrib-typer>=0.8.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.10.1,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+[project.scripts]
+oberon0-rt = 'oberon0_compiler:app'
+
+[tool.bumpversion]
+current_version = "0.1.6"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+serialize = ["{major}.{minor}.{patch}"]
+search = "{current_version}"
+replace = "{new_version}"
+regex = false
+ignore_missing_version = false
+ignore_missing_files = false
+tag = true
+sign_tags = false
+tag_name = "v{new_version}"
+tag_message = "🔖 Bump version: {current_version} -> {new_version}"
+allow_dirty = false
+commit = true
+message = "🔖 Bump version: {current_version} -> {new_version}"
+moveable_tags = []
+commit_args = ""
+setup_hooks = []
+pre_commit_hooks = ["uv sync", "git add uv.lock"]
+post_commit_hooks = []
+
+[[tool.bumpversion.files]]
+filename = "docs/conf.py"
+search = "release = \"{current_version}\""
+replace = "release = \"{new_version}\""
+
+[[tool.bumpversion.files]]
+filename = "src/oberon0_runtime/__init__.py"
+search = "__version__ = \"{current_version}\""
+replace = "__version__ = \"{new_version}\""
