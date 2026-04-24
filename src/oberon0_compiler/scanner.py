@@ -16,7 +16,7 @@ import io
 from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
-from typing import final
+from typing import ClassVar, final
 
 from loguru import logger
 from typing_extensions import override
@@ -89,9 +89,12 @@ class Scanner:
     _text_line: str = ""
 
     # Maps keyword text -> Token  (e.g. "IF" -> Token.IF)
-    _keyword: dict[str, Token] = {str(i): i for i in Token if str(i).isupper()}
+    _keyword: ClassVar[dict[str, Token]] = {
+        str(i): i for i in Token if str(i).isupper()
+    }
 
-    _symbol: dict[str, Token] = {
+    # Maps symbol text -> Token  (e.g. "*" -> Token.TIMES)
+    _symbol: ClassVar[dict[str, Token]] = {
         str(i): i for i in Token if not str(i).isupper() and not str(i).islower()
     }
 
