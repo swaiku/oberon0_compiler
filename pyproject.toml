@@ -4,7 +4,7 @@
 
 [project]
 name = "oberon0-compiler"
-version = "0.2.1"
+version = "0.2.2"
 description = "Oberon-0 compiler implemented in Python"
 authors = [{ name = "Jeremy Prin", email = "prin.jeremy@protonmail.ch" }]
 keywords = ["oberon", "compiler", "interpreter"]
@@ -46,7 +46,7 @@ venv = ".venv"
 oberon0-compiler = "oberon0_compiler:app"
 
 [tool.bumpversion]
-current_version = "0.2.1"
+current_version = "0.2.2"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
 serialize = ["{major}.{minor}.{patch}"]
 search = "{current_version}"
