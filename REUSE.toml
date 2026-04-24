@@ -1,10 +1,10 @@
 version = 1
 SPDX-PackageName = "oberon0-compiler"
-SPDX-PackageSupplier = "Jérémy Prin"
+SPDX-PackageSupplier = "Jeremy Prin"
 SPDX-PackageDownloadLocation = "https://github.com/swaiku/oberon0_compiler"
 
 [[annotations]]
 path = [".gitignore","examples/*", ".python-version","uv.lock", "pyproject.toml", "CHANGELOG.md", ".pre-commit-config.yaml", ".github/cliff.toml", "README.md", "docs/Makefile", "docs/make.bat", "docs/index.rst"]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2026 Jérémy Prin"
+SPDX-FileCopyrightText = "2026 Jeremy Prin"
 SPDX-License-Identifier = "MIT"
