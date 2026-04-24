@@ -1,3 +1,28 @@
+## v0.2.2 (24-04-2026)
+
+### 🐛 Bug Fixes
+
+- 🐛 resolve issue with auto changelog ([6079440](https://github.com/swaiku/oberon0_compiler/commit/60794408f82bac513822451a9527544b9576d4c7))
+
+### 📝 Documentation
+
+- 📝 Update CHANGELOG for v0.2.0 ([4b0bf71](https://github.com/swaiku/oberon0_compiler/commit/4b0bf714e90bb53660f7867f01e062d5508c4fda))
+
+### 🔀 Other
+
+- 🔀 Merge branch 'main' of github.com:swaiku/oberon0_compiler ([db9a7a7](https://github.com/swaiku/oberon0_compiler/commit/db9a7a78b81f19c0779cca3a966808bd6f7c3ca8))
+- 🔖 Bump version: 0.2.1 -> 0.2.2 ([be6e255](https://github.com/swaiku/oberon0_compiler/commit/be6e255a4214b4524f3a219124f6974789a6f015))
+
+## v0.2.1 (24-04-2026)
+
+### ♻️ Refactoring
+
+- ♻️ Use ClassVar for keyword and symbol maps to resolve unit test error ([c18ecc3](https://github.com/swaiku/oberon0_compiler/commit/c18ecc35cf5a79d733eb52dce947dfa845feebaa))
+
+### 🔀 Other
+
+- 🔖 Bump version: 0.2.0 -> 0.2.1 ([4b6dc5b](https://github.com/swaiku/oberon0_compiler/commit/4b6dc5b0afa1a7cf9082193df4c5b8969a3be227))
+
 ## v0.2.0 (24-04-2026)
 
 ### ✨ Features
