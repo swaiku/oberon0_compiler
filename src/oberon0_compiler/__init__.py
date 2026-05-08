@@ -67,6 +67,21 @@ def main(
     ] = False,
     debug: bool = False,
     debug_scanner: bool = False,
+    emit_wasm: Annotated[
+        bool,
+        typer.Option(
+            "--emit-wasm",
+            help="Generate a WebAssembly (.wasm) file from the parsed module",
+        ),
+    ] = False,
+    out: Annotated[
+        Path | None,
+        typer.Option(
+            "--out",
+            help="Output path for the generated \
+            WebAssembly (defaults to <source>.wasm)",
+        ),
+    ] = None,
 ) -> None:
     """Oberon-0 compiler.
 
@@ -88,6 +103,7 @@ def main(
     # chain that arises because parser.py and its dependencies all do
     # "from . import <submodule>", which causes Python (and Sphinx autodoc)
     # to re-enter __init__.py while it is still being initialised.
+    from .code_gen import CodeGenerator, CodeGenError  # noqa: PLC0415
     from .parser import Parser, ParserError  # noqa: PLC0415
     from .scanner import Scanner, ScannerError  # noqa: PLC0415
 
@@ -114,3 +130,13 @@ def main(
     # Pretty-print the AST as reconstructed Oberon-0 source.
     logger.info(f"Successfully parsed module '{module.ident}'")
     console.print(str(module))
+
+    if emit_wasm:
+        output_path = out if out is not None else source.with_suffix(".wasm")
+        try:
+            with output_path.open("wb") as wasm_file:
+                CodeGenerator().generate(module, wasm_file)
+            logger.info(f"Generated WebAssembly: '{output_path}'")
+        except (OSError, CodeGenError) as e:
+            logger.error(f"Code generation error: {e}")
+            raise typer.Exit(code=1) from e

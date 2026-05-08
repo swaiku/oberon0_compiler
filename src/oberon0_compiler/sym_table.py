@@ -289,7 +289,7 @@ class SymbolTable:
         logger.debug(f"Closing scope at level {level} — symbols defined here:")
         for sym in self.scopes[-1].symbols.values():
             logger.debug(f"  {sym}")
-        self.scopes.pop()
+        _ = self.scopes.pop()
 
     # ------------------------------------------------------------------
     # Symbol registration and lookup

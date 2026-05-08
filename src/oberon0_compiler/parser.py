@@ -224,11 +224,11 @@ class Parser:
 
         args: list[ast.Expression] = []
 
-        if self.scanner.sym != Token.RPAREN:
+        if self.scanner.sym != Token.RPAREN:  # pyright: ignore[reportUnnecessaryComparison]
             # Parse the first argument.
             args.append(self.expression())
             # Parse any additional comma-separated arguments.
-            while self.scanner.sym == Token.COMMA:
+            while self.scanner.sym == Token.COMMA:  # pyright: ignore[reportUnnecessaryComparison]
                 self.scanner.get_next_symbol()  # consume ','
                 args.append(self.expression())
 
@@ -269,7 +269,7 @@ class Parser:
         pos = self.scanner.position()
 
         # ident [ActualParameters]
-        if self.scanner.sym == Token.IDENT:
+        if self.scanner.sym == Token.IDENT:  # pyright: ignore[reportUnnecessaryComparison]
             name = self.scanner.value
             self.scanner.get_next_symbol()  # consume the identifier
 
@@ -284,7 +284,7 @@ class Parser:
             if isinstance(symbol, (SYM.SystemCall, SYM.ProcedureDefinition)):
                 # Callable used as a value (e.g. eot()).
                 args: list[ast.Expression] = []
-                if self.scanner.sym == Token.LPAREN:
+                if self.scanner.sym == Token.LPAREN:  # pyright: ignore[reportUnnecessaryComparison]
                     args = self._actual_parameters()
                 return ast.ProcedureCallFactor(position=pos, symbol=symbol, args=args)
 
@@ -295,13 +295,13 @@ class Parser:
             )
 
         # number
-        if self.scanner.sym == Token.NUMBER:
+        if self.scanner.sym == Token.NUMBER:  # pyright: ignore[reportUnnecessaryComparison]
             value = int(self.scanner.value)
             self.scanner.get_next_symbol()  # consume the number
             return ast.Number(position=pos, value=value)
 
         # "(" expression ")"
-        if self.scanner.sym == Token.LPAREN:
+        if self.scanner.sym == Token.LPAREN:  # pyright: ignore[reportUnnecessaryComparison]
             self.scanner.get_next_symbol()  # consume '('
             expr = self.expression()
             self._expect(Token.RPAREN)  # consume ')'
@@ -445,7 +445,7 @@ class Parser:
         """
         logger.debug("parsing statement")
 
-        if self.scanner.sym != Token.IDENT:
+        if self.scanner.sym != Token.IDENT:  # pyright: ignore[reportUnnecessaryComparison]
             # Empty statement: return without consuming any token.
             return None
 
@@ -454,7 +454,7 @@ class Parser:
         self.scanner.get_next_symbol()  # consume the identifier
 
         # --- Assignment ---------------------------------------------------
-        if self.scanner.sym == Token.BECOMES:
+        if self.scanner.sym == Token.BECOMES:  # pyright: ignore[reportUnnecessaryComparison]
             self.scanner.get_next_symbol()  # consume ':='
 
             symbol = self.sym_table.find(name, SYM.Variable)
@@ -485,7 +485,7 @@ class Parser:
             )
 
         args: list[ast.Expression] = []
-        if self.scanner.sym == Token.LPAREN:
+        if self.scanner.sym == Token.LPAREN:  # pyright: ignore[reportUnnecessaryComparison]
             args = self._actual_parameters()
 
         return ast.ProcedureCallStatement(position=pos, symbol=symbol, args=args)
@@ -520,7 +520,7 @@ class Parser:
         if s is not None:
             statements.append(s)
 
-        while self.scanner.sym == Token.SEMICOLON:
+        while self.scanner.sym == Token.SEMICOLON:  # pyright: ignore[reportUnnecessaryComparison]
             self.scanner.get_next_symbol()  # consume ';'
             s = self.statement()
             if s is not None:
@@ -555,7 +555,7 @@ class Parser:
         names: list[str] = [self.scanner.value]
         self.scanner.get_next_symbol()  # consume first identifier
 
-        while self.scanner.sym == Token.COMMA:
+        while self.scanner.sym == Token.COMMA:  # pyright: ignore[reportUnnecessaryComparison]
             self.scanner.get_next_symbol()  # consume ','
             self._check_sym(Token.IDENT)
             names.append(self.scanner.value)
@@ -641,11 +641,11 @@ class Parser:
         offset: int = 0  # running byte offset within the current scope
 
         # --- Optional VAR block -------------------------------------------
-        if self.scanner.sym == Token.VAR:
+        if self.scanner.sym == Token.VAR:  # pyright: ignore[reportUnnecessaryComparison]
             self.scanner.get_next_symbol()  # consume 'VAR'
 
             # Each iteration handles one "IdentList : type ;" group.
-            while self.scanner.sym == Token.IDENT:
+            while self.scanner.sym == Token.IDENT:  # pyright: ignore[reportUnnecessaryComparison]
                 decl_pos = self.scanner.position()
                 names = self._ident_list()  # consume idents and ','s
 
@@ -672,7 +672,7 @@ class Parser:
                     offset += type_sym.size
 
         # --- Zero or more procedure declarations --------------------------
-        while self.scanner.sym == Token.PROCEDURE:
+        while self.scanner.sym == Token.PROCEDURE:  # pyright: ignore[reportUnnecessaryComparison]
             p = self.procedure_declaration()  # consume through final ident
             self._expect(Token.SEMICOLON)  # consume ';' after declaration
             proc_decls.append(p)
@@ -725,7 +725,7 @@ class Parser:
         self.scanner.get_next_symbol()  # consume procedure name
 
         exported: bool = False
-        if self.scanner.sym == Token.TIMES:
+        if self.scanner.sym == Token.TIMES:  # pyright: ignore[reportUnnecessaryComparison]
             exported = True
             self.scanner.get_next_symbol()  # consume '*'
 
@@ -743,7 +743,7 @@ class Parser:
 
         # Optional BEGIN ... StatementSequence
         body = ast.StatementSequence(position=self.scanner.position(), statements=[])
-        if self.scanner.sym == Token.BEGIN:
+        if self.scanner.sym == Token.BEGIN:  # pyright: ignore[reportUnnecessaryComparison]
             self.scanner.get_next_symbol()  # consume 'BEGIN'
             body = self.statement_sequence()
 

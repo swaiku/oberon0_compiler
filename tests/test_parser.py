@@ -128,19 +128,19 @@ def test_module_str_empty() -> None:
 def test_module_name_mismatch_raises() -> None:
     """A module whose closing name differs from its opening name is an error."""
     with pytest.raises(ParserError, match="mismatch"):
-        parse("MODULE A; END B.")
+        _ = parse("MODULE A; END B.")
 
 
 def test_missing_period_raises() -> None:
     """A module missing the terminating '.' raises ParserError."""
     with pytest.raises(ParserError):
-        parse("MODULE M; END M")
+        _ = parse("MODULE M; END M")
 
 
 def test_missing_end_raises() -> None:
     """A module missing END raises ParserError."""
     with pytest.raises(ParserError):
-        parse("MODULE M; M.")
+        _ = parse("MODULE M; M.")
 
 
 # ---------------------------------------------------------------------------
@@ -197,13 +197,13 @@ def test_var_multiple_groups() -> None:
 def test_unknown_type_raises() -> None:
     """Declaring a variable with an unknown type raises ParserError."""
     with pytest.raises(ParserError, match="not a known type"):
-        parse("MODULE M; VAR x : REAL; END M.")
+        _ = parse("MODULE M; VAR x : REAL; END M.")
 
 
 def test_duplicate_var_raises() -> None:
     """Declaring the same identifier twice in the same scope raises an error."""
     with pytest.raises((KeyError, ParserError)):
-        parse("MODULE M; VAR x : INTEGER; VAR x : BOOLEAN; END M.")
+        _ = parse("MODULE M; VAR x : INTEGER; VAR x : BOOLEAN; END M.")
 
 
 def test_var_declaration_str() -> None:
@@ -244,7 +244,7 @@ def test_exported_procedure() -> None:
 def test_procedure_name_mismatch_raises() -> None:
     """Mismatched closing name in a procedure raises ParserError."""
     with pytest.raises(ParserError, match="mismatch"):
-        parse("MODULE M; PROCEDURE Foo; END Bar; END M.")
+        _ = parse("MODULE M; PROCEDURE Foo; END Bar; END M.")
 
 
 def test_procedure_with_local_var() -> None:
@@ -483,7 +483,7 @@ def test_undeclared_variable_in_expression_raises() -> None:
         "MODULE M;  PROCEDURE P;    VAR x : INTEGER;  BEGIN x := undefined END P;END M."
     )
     with pytest.raises(ParserError, match="[Uu]ndeclared"):
-        parse(src)
+        _ = parse(src)
 
 
 # ---------------------------------------------------------------------------
@@ -522,14 +522,14 @@ def test_assignment_to_undeclared_raises() -> None:
     """Assigning to an undeclared variable raises ParserError."""
     src = "MODULE M;  PROCEDURE P;  BEGIN ghost := 1 END P;END M."
     with pytest.raises(ParserError):
-        parse(src)
+        _ = parse(src)
 
 
 def test_assignment_lhs_must_be_variable() -> None:
     """Assigning to a non-variable (e.g. a procedure name) raises ParserError."""
     src = "MODULE M;  PROCEDURE P;  END P;  PROCEDURE Q;  BEGIN P := 1 END Q;END M."
     with pytest.raises(ParserError):
-        parse(src)
+        _ = parse(src)
 
 
 # ---------------------------------------------------------------------------
@@ -582,14 +582,14 @@ def test_call_undeclared_procedure_raises() -> None:
     """Calling an undeclared procedure raises ParserError."""
     src = "MODULE M;  PROCEDURE P;  BEGIN Ghost END P;END M."
     with pytest.raises(ParserError):
-        parse(src)
+        _ = parse(src)
 
 
 def test_call_variable_as_procedure_raises() -> None:
     """Using a variable name as a procedure call raises ParserError."""
     src = "MODULE M;  PROCEDURE P;    VAR x : INTEGER;  BEGIN x END P;END M."
     with pytest.raises(ParserError):
-        parse(src)
+        _ = parse(src)
 
 
 # ---------------------------------------------------------------------------
@@ -935,7 +935,7 @@ def test_local_var_not_visible_outside_procedure() -> None:
         "END M."
     )
     with pytest.raises(ParserError):
-        parse(src)
+        _ = parse(src)
 
 
 def test_global_var_visible_in_procedure() -> None:

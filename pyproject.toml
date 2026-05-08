@@ -14,6 +14,7 @@ dependencies = [
     "loguru>=0.7.3",
     "rich>=15.0.0",
     "typer>=0.24.2",
+    "wasm-gen",
     "wasmtime>=44.0.0",
 ]
 
@@ -73,3 +74,6 @@ replace = "release = \"{new_version}\""
 filename = "src/oberon0_compiler/__init__.py"
 search = "__version__ = \"{current_version}\""
 replace = "__version__ = \"{new_version}\""
+
+[tool.uv.sources]
+wasm-gen = { git = "https://github.com/heiafr-isc/wasm-gen-py" }
