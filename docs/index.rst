@@ -1,43 +1,33 @@
-oberon0-compiler documentation
-=============================
+.. SPDX-FileCopyrightText: 2026 Jeremy Prin <prin.jeremy@protonmail.ch>
+.. SPDX-License-Identifier: MIT
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Oberon-0 Compiler
+==================
 
-A Oberon-0 compiler
+An Oberon-0 compiler implemented in Python as a multi-pass pipeline.
 
 .. grid:: 1 2 2 2
     :gutter: 2
 
-    .. grid-item-card:: 📚 Module Documentation
-        :link-type: ref
-        :link: modules-section
+    .. grid-item-card:: 📚 API Reference
+        :link: api/index
+        :link-type: doc
 
-        Explore the API documentation and module reference.
+        Full documentation of every module: scanner, parser, AST nodes,
+        symbol table, built-in types and system calls.
 
-    .. grid-item-card:: 🔍 API Reference
+    .. grid-item-card:: 🔍 Index
         :link: genindex
 
-        Complete index of all classes, functions, and variables.
+        Complete index of all classes, functions and variables.
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :hidden:
+   :caption: Contents
 
-.. _modules-section:
-
-Modules
-=======
-
-.. toctree::
-   :maxdepth: 3
-
-.. automodule:: oberon0_compiler
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   api/index
 
 Indices and tables
 ==================
