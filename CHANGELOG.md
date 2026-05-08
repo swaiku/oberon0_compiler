@@ -1,3 +1,18 @@
+## v0.3.0 (08-05-2026)
+
+### ✨ Features
+
+- ✨ Add parser, AST, symbol table and docs ([6598f9b](https://github.com/swaiku/oberon0_compiler/commit/6598f9b73467839a3b49a6faeb42dfef5e777134))
+- ✨ Add WebAssembly code generator and examples ([a9ee95f](https://github.com/swaiku/oberon0_compiler/commit/a9ee95f1b98482436111068f120447beb80c6e84))
+
+### 📝 Documentation
+
+- 📝 Update CHANGELOG for v0.2.2 ([d731940](https://github.com/swaiku/oberon0_compiler/commit/d731940b91fd6b51e217cbd1d925f41c691b2499))
+
+### 🔀 Other
+
+- 🔖 Bump version: 0.2.2 -> 0.3.0 ([1d7eb4c](https://github.com/swaiku/oberon0_compiler/commit/1d7eb4c2ad7a22ffdbb81e34a54043014235ca6f))
+
 ## v0.2.2 (24-04-2026)
 
 ### 🐛 Bug Fixes
