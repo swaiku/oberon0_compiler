@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 project = "oberon0-compiler"
 copyright = "2026, Jérémy Prin"
 author = "Jérémy Prin"
-release = "0.2.2"
+release = "0.3.0"
 
 # -- General configuration ---------------------------------------------------
 extensions = [
